@@ -2,18 +2,20 @@ import React from 'react'
 import { Provider } from 'react-redux'
 import { store, persistor } from './src/store'
 import { PersistGate } from 'redux-persist/integration/react'
-import { StyleSheet, Text, View, StatusBar } from 'react-native'
+import { StyleSheet, StatusBar } from 'react-native'
+import { createAppContainer } from 'react-navigation'
+import RootStack from './src/app/navigatiors/RootStack'
+
+const AppContainer = createAppContainer(RootStack)
 
 export default class App extends React.Component {
 
   render() {
     return (
       <Provider store={store}>
-        <StatusBar />
+        {/* <StatusBar /> */}
         <PersistGate loading={null} persistor={persistor}>
-          <View style={styles.container}>
-            <Text>Bla bla</Text>
-          </View>
+          <AppContainer />
         </PersistGate>
       </Provider>
     )
