@@ -4,6 +4,9 @@ import { createStackNavigator } from 'react-navigation-stack'
 const RootStack = createStackNavigator({
   Home: {
     screen: HomeScreen,
+    navigationOptions: () => ({
+
+    })
   },
 })
 

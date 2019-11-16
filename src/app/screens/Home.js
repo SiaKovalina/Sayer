@@ -1,12 +1,14 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import ListItem from '../components/ListItem'
+import AddBtn from '../components/AddBtn'
 
 class HomeScreen extends React.Component {
   render() {
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Home Screen</Text>
-      </View>
+      <React.Fragment>
+        <ListItem>New text</ListItem>
+        <AddBtn />
+      </React.Fragment>
     )
   }
 }
