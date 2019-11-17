@@ -17,7 +17,13 @@ class HomeScreen extends Component {
   renderItems = () => {
     const { list } = this.props
 
-    return list.map(item => <ListItem key={item.id}>{item.text}</ListItem>)
+    return list.map(item => (
+      <ListItem
+        key={item.id}
+        id={item.id}>
+          {item.text}
+      </ListItem>
+    ))
   }
 
   render() {

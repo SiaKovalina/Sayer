@@ -5,6 +5,12 @@ const setItem = (item) => ({
   item
 })
 
+const removeItem = (id) => ({
+  type: types.REMOVE_ITEM,
+  id
+})
+
 export default {
-  setItem
+  setItem,
+  removeItem
 }
