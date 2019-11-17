@@ -20,9 +20,7 @@ class NewItem extends Component {
   }
 
   onTextChange = (text) => {
-    this.setState(state => ({
-      text
-    }))
+    this.setState({ text })
   }
 
   addItem = () => {
@@ -35,6 +33,7 @@ class NewItem extends Component {
 
     addItem(item)
     navigation.navigate('Home')
+    this.setState({ text: '' })
   }
 
   render() {

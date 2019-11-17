@@ -3,13 +3,13 @@ import HomeScreen from '../screens/Home'
 import NewItemScreen from '../screens/NewItem'
 
 const RootStack = createStackNavigator({
-  NewItem: {
-    screen: NewItemScreen
-  },
   Home: {
     screen: HomeScreen,
   },
 
+  NewItem: {
+    screen: NewItemScreen
+  }
 })
 
 export default RootStack
