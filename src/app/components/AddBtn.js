@@ -1,5 +1,5 @@
 import React from 'react'
-import { TouchableHighlight, Image, StyleSheet } from 'react-native'
+import { TouchableOpacity, Image, StyleSheet } from 'react-native'
 import { withNavigation } from 'react-navigation'
 import { PINK } from '../colors'
 
@@ -9,13 +9,13 @@ const AddBtn = ({ navigation }) => {
   }
 
   return (
-    <TouchableHighlight
+    <TouchableOpacity
       style={styles.btn}
       onPress={onBtnPress}>
         <Image
           source={require('../assets/icons/plus-round.png')}
           style={styles.btn__icon}/>
-    </TouchableHighlight>
+    </TouchableOpacity>
   )
 }
 

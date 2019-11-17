@@ -1,9 +1,10 @@
 import React from 'react'
-import { TouchableHighlight, Text, StyleSheet } from 'react-native'
+import { TouchableOpacity, Text, StyleSheet } from 'react-native'
 import { GREY, DARK_BLUE } from '../colors'
 import { DEFAULT_FONT_SIZE } from '../../constants'
 import { connect } from 'react-redux'
 import ItemActions from '../../store/actions/ItemActions'
+import { withNavigation } from 'react-navigation'
 
 const mapDispatchToProps = (dispatch) => {
   const removeItem = (id) => dispatch(ItemActions.removeItem(id))
@@ -13,15 +14,23 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const ListItem = ({ children, removeItem, id }) => {
+const ListItem = ({ children, removeItem, id, navigation }) => {
+
+  const goToComments = () => {
+    navigation.navigate('Comments', { itemId: id })
+  }
+
   return (
-    <TouchableHighlight
-      onPress={() => removeItem(id)}
+    <TouchableOpacity
+      onPress={goToComments}
       style={styles.item}>
-        <Text style={styles.item__text}>
-          {children}
-        </Text>
-    </TouchableHighlight>
+        <React.Fragment>
+          <Text style={styles.item__text}>
+            {children}
+          </Text>
+          <Text onPress={() => removeItem(id)}>Delete</Text>
+      </React.Fragment>
+    </TouchableOpacity>
   )
 }
 
@@ -30,14 +39,18 @@ const styles = StyleSheet.create({
     height: 80,
     borderBottomWidth: 1,
     borderBottomColor: GREY,
-    justifyContent: 'center',
-    paddingLeft: 40
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexDirection: 'row',
+    paddingLeft: 40,
+    paddingRight: 40
   },
 
   item__text: {
+    flexGrow: 2,
     fontSize: DEFAULT_FONT_SIZE,
     color: DARK_BLUE
   }
 })
 
-export default connect(null, mapDispatchToProps)(ListItem)
+export default withNavigation(connect(null, mapDispatchToProps)(ListItem))
