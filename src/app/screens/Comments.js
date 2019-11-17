@@ -1,17 +1,18 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { FlatList, Text, TextInput, StyleSheet, View } from 'react-native'
+import { FlatList, Text, TextInput, StyleSheet, View, Alert } from 'react-native'
 import SubmitBtn from '../components/SubmitBtn'
 import { GREY } from '../colors'
 import { DEFAULT_FONT_SIZE } from '../../constants'
 import ItemActions from '../../store/actions/ItemActions'
+import Comment from '../components/Comment'
+import { generateId } from '../../utils'
 
 const mapStateToProps = (state, { navigation }) => {
   const { comments } = state.items
-  const itemId = navigation.getParam('ItemId')
 
   return {
-    comments: comments[itemId]
+    comments
   }
 }
 
@@ -28,8 +29,8 @@ class Comments extends Component {
     text: ''
   }
 
-  renderComment = () => {
-
+  renderComment = ({ item }) => {
+    return <Comment comment={item.text} />
   }
 
   onTextChage = (text) => {
@@ -40,25 +41,36 @@ class Comments extends Component {
     this.setState({ text: '' })
   }
 
+  isInputValid = () => {
+    return this.state.text.trim()
+  }
+
   addComment = () => {
     const { setComment, navigation } = this.props
     const comment = {
       text: this.state.text,
       itemId: navigation.getParam('itemId')
-  }
+    }
 
-    setComment(comment)
-    this.clearInputField()
+    if (this.isInputValid()) {
+      setComment(comment)
+      this.clearInputField()
+    } else {
+      Alert.alert('You should write something first')
+    }
   }
 
   render() {
-    const { comments } = this.props
+    const { comments, navigation } = this.props
+    const itemId = navigation.getParam('itemId')
+    const data = comments[itemId]
 
     return (
       <React.Fragment>
         <FlatList
           renderItem={this.renderComment}
-          data={comments} />
+          data={data}
+          keyExtractor={item => generateId()} />
         <View style={styles.input}>
           <TextInput
             onChangeText={this.onTextChage}

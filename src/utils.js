@@ -3,3 +3,9 @@ export const generateId = () => {
 
   return uuidv4()
 }
+
+export const truncate = (text) => {
+  const textLength = 25
+
+  return text.length > textLength ? text.slice(0, textLength) + ' ...' : text
+}
