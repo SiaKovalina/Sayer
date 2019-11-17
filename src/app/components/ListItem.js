@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { GREY, DARK_BLUE } from '../colors'
+import { DEFAULT_FONT_SIZE } from '../../constants'
 
 const ListItem = ({ children }) => {
   return (
@@ -20,7 +21,7 @@ const styles = StyleSheet.create({
   },
 
   item__text: {
-    fontSize: 24,
+    fontSize: DEFAULT_FONT_SIZE,
     color: DARK_BLUE
   }
 })

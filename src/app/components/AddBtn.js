@@ -1,10 +1,11 @@
 import React from 'react'
 import { TouchableHighlight, Image, StyleSheet } from 'react-native'
+import { withNavigation } from 'react-navigation'
 import { PINK } from '../colors'
 
-const AddBtn = () => {
+const AddBtn = ({ navigation }) => {
   const onBtnPress = () => {
-    console.log('pressed')
+    navigation.navigate('NewItem')
   }
 
   return (
@@ -36,4 +37,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default AddBtn
+export default withNavigation(AddBtn)
