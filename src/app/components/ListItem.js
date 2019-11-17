@@ -13,7 +13,7 @@ const ListItem = ({ children }) => {
 
 const styles = StyleSheet.create({
   item: {
-    height: 90,
+    height: 80,
     borderBottomWidth: 1,
     borderBottomColor: GREY,
     justifyContent: 'center',

@@ -33,7 +33,6 @@ class NewItem extends Component {
 
     addItem(item)
     navigation.navigate('Home')
-    this.setState({ text: '' })
   }
 
   render() {
