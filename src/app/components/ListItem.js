@@ -1,13 +1,27 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { TouchableHighlight, Text, StyleSheet } from 'react-native'
 import { GREY, DARK_BLUE } from '../colors'
 import { DEFAULT_FONT_SIZE } from '../../constants'
+import { connect } from 'react-redux'
+import ItemActions from '../../store/actions/ItemActions'
 
-const ListItem = ({ children }) => {
+const mapDispatchToProps = (dispatch) => {
+  const removeItem = (id) => dispatch(ItemActions.removeItem(id))
+
+  return {
+    removeItem
+  }
+}
+
+const ListItem = ({ children, removeItem, id }) => {
   return (
-    <View style={styles.item}>
-      <Text style={styles.item__text}>{children}</Text>
-    </View>
+    <TouchableHighlight
+      onPress={() => removeItem(id)}
+      style={styles.item}>
+        <Text style={styles.item__text}>
+          {children}
+        </Text>
+    </TouchableHighlight>
   )
 }
 
@@ -26,4 +40,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default ListItem
+export default connect(null, mapDispatchToProps)(ListItem)

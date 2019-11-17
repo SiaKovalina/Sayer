@@ -14,6 +14,13 @@ const ItemsReducer = (state = initialState, action) => {
           ...state.list
         ]
       }
+    case types.REMOVE_ITEM:
+      return {
+        ...state,
+        list: [
+          ...state.list.filter(item => item.id != action.id)
+        ]
+      }
     default:
       return state
   }
