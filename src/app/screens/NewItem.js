@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { View, StyleSheet, TextInput, TouchableHighlight, Image } from 'react-native'
+import { View, StyleSheet, TextInput, TouchableOpacity, Image } from 'react-native'
 import { connect } from 'react-redux'
 import { BLACK, DARK_BLUE } from '../colors'
 import { DEFAULT_FONT_SIZE } from '../../constants'
 import { generateId } from '../../utils'
 import ItemActions from '../../store/actions/ItemActions'
+import SubmitBtn from '../components/SubmitBtn'
 
 const mapDispatchToProps = (dispatch) => {
   const addItem = (item) => dispatch(ItemActions.setItem(item))
@@ -42,12 +43,7 @@ class NewItem extends Component {
           placeholder='New item title ...'
           style={styles.input}
           onChangeText={this.onTextChange}/>
-        <TouchableHighlight
-          onPress={this.addItem}>
-          <Image
-            style={styles.btn__image}
-            source={require('../assets/icons/plus-round.png')} />
-        </TouchableHighlight>
+        <SubmitBtn onBtnPress={this.addItem} />
       </View>
     )
   }
@@ -68,11 +64,6 @@ const styles = StyleSheet.create({
     flexGrow: 2,
     fontSize: DEFAULT_FONT_SIZE,
     color: DARK_BLUE
-  },
-
-  btn__image: {
-    width: 45,
-    height: 45
   }
 })
 

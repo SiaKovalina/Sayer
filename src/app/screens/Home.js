@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { ScrollView } from 'react-native'
+import { ScrollView, Text } from 'react-native'
 import ListItem from '../components/ListItem'
 import AddBtn from '../components/AddBtn'
 import { connect } from 'react-redux'
+import { truncate } from '../../utils'
 
 const mapStateToProps = (state) => {
   const { list } = state.items
@@ -21,17 +22,25 @@ class HomeScreen extends Component {
       <ListItem
         key={item.id}
         id={item.id}>
-          {item.text}
+          {truncate(item.text)}
       </ListItem>
     ))
   }
 
   render() {
+    const { list } = this.props
+
     return (
       <React.Fragment>
-        <ScrollView>
-          {this.renderItems()}
-        </ScrollView>
+        {list.length ?
+          <ScrollView>
+            {this.renderItems()}
+          </ScrollView>
+          :
+          <Text>
+            No items yet
+          </Text>
+        }
         <AddBtn />
       </React.Fragment>
     )

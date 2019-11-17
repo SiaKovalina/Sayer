@@ -10,7 +10,18 @@ const removeItem = (id) => ({
   id
 })
 
+const setComment = (comment) => ({
+  type: types.SET_COMMENT,
+  comment
+})
+
+const removeComments = (itemId) => ({
+  type: types.REMOVE_COMMENTS
+})
+
 export default {
   setItem,
-  removeItem
+  removeItem,
+  setComment,
+  removeComments
 }
